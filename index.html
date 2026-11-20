@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Novaquest – Tech tips, brain games, science and learning quests</title>
+<meta name="description" content="Novaquest publishes original, beginner-friendly guides on tech tips, puzzles and brain games, science and creative learning. Pick a quest and start today.">
+<link rel="canonical" href="https://www.yourdomain.com/">
+<meta property="og:title" content="Novaquest">
+<meta property="og:description" content="Beginner-friendly guides on tech tips, brain games, science and learning.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+
+<!-- GOOGLE ADSENSE: paste your own code here after approval.
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+-->
+
+<style>
+:root{
+  --bg:#f6f6fb; --ink:#1b1b33; --muted:#5b5b7a; --card:#ffffff; --line:#dedef0;
+  --violet:#5b3df5; --violet-ink:#ffffff; --yellow:#ffd23f; --yellow-ink:#2a2000; --mint:#12a87a; --tint:#ececfd;
+  --head:'Rubik','Trebuchet MS',Arial,sans-serif;
+  --body:'Karla','Segoe UI',Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e0e1f; --ink:#f0f0ff; --muted:#a9a9cc; --card:#18183a; --line:#2c2c5c;
+    --violet:#9d8bff; --violet-ink:#0e0e1f; --yellow:#ffd23f; --yellow-ink:#2a2000; --mint:#3fdca9; --tint:#21214e;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e0e1f; --ink:#f0f0ff; --muted:#a9a9cc; --card:#18183a; --line:#2c2c5c;
+  --violet:#9d8bff; --violet-ink:#0e0e1f; --yellow:#ffd23f; --yellow-ink:#2a2000; --mint:#3fdca9; --tint:#21214e;
+  color-scheme:dark;
+}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.08rem;line-height:1.65}
+a{color:var(--violet)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--head);line-height:1.15;margin:0 0 .5em;font-weight:700}
+.wrap{max-width:1120px;margin:0 auto;padding:0 1.25rem}
+
+/* Header with chunky bottom border */
+.top{background:var(--card);border-bottom:4px solid var(--violet);padding-top:env(safe-area-inset-top,0px)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:.8rem;padding-bottom:.8rem}
+.brand{display:flex;align-items:center;gap:.5rem;color:var(--ink);text-decoration:none;font-family:var(--head);font-weight:800;font-size:1.5rem}
+.brand svg{width:38px;height:38px}
+.top nav ul{display:flex;flex-wrap:wrap;gap:.25rem .4rem;list-style:none;margin:0;padding:0;font-family:var(--head);font-weight:500;font-size:.92rem}
+.top nav a{display:block;color:var(--ink);text-decoration:none;padding:.4rem .75rem;border-radius:8px}
+.top nav a:hover{background:var(--tint)}
+
+/* Hero + quest log */
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:2.2rem;align-items:center;padding:3rem 0 1.6rem}
+.hero h1{font-size:clamp(2.3rem,5.6vw,4rem);font-weight:800;margin-bottom:.35em}
+.hero h1 mark{background:var(--yellow);color:var(--yellow-ink);padding:0 .2em;border-radius:8px}
+.hero p{color:var(--muted);max-width:50ch;margin:0 0 1.4rem}
+.btn{display:inline-block;background:var(--violet);color:var(--violet-ink);font-family:var(--head);font-weight:700;text-decoration:none;padding:.8rem 1.5rem;border-radius:10px;box-shadow:0 4px 0 rgba(0,0,0,.25);border:0}
+.btn:hover{filter:brightness(1.08)}
+.log{background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:1.4rem 1.5rem;box-shadow:6px 6px 0 var(--yellow)}
+.log h2{font-size:1.15rem;margin-bottom:.8rem}
+.log ul{list-style:none;margin:0;padding:0}
+.log li{display:flex;gap:.7rem;align-items:flex-start;padding:.55rem 0;border-bottom:1px dashed var(--line);font-size:1rem}
+.log li:last-child{border:0}
+.log .box{flex:0 0 22px;height:22px;border:2px solid var(--ink);border-radius:6px;margin-top:2px}
+.log .done{background:var(--mint);border-color:var(--mint);position:relative}
+.log .done::after{content:"";position:absolute;left:5px;top:1px;width:6px;height:11px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(40deg)}
+.bar{height:10px;background:var(--tint);border-radius:999px;margin-top:1rem;overflow:hidden}
+.bar i{display:block;height:100%;width:34%;background:var(--mint)}
+.log small{display:block;margin-top:.4rem;color:var(--muted);font-size:.85rem}
+
+/* Filters */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0 1.2rem}
+.filters h2{font-size:1.5rem;margin:0 1rem 0 0}
+.chip{font-family:var(--head);font-weight:500;font-size:.9rem;background:var(--card);color:var(--ink);border:2px solid var(--line);border-radius:999px;padding:.35rem 1rem;cursor:pointer}
+.chip:hover{border-color:var(--violet)}
+.chip[aria-pressed="true"]{background:var(--violet);border-color:var(--violet);color:var(--violet-ink)}
+
+/* Ads */
+.ad-slot{margin:1.6rem 0;text-align:center}
+.ad-slot small{display:block;font-family:var(--head);font-size:.72rem;color:var(--muted);margin-bottom:.3rem}
+.ad-box{min-height:100px;border:2px dashed var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem}
+
+/* Quest cards */
+.board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.3rem}
+.quest{background:var(--card);border:2px solid var(--ink);border-radius:16px;padding:1.3rem 1.3rem 1.1rem;display:flex;flex-direction:column;box-shadow:4px 4px 0 var(--line)}
+.quest[hidden]{display:none}
+.quest .top-row{display:flex;justify-content:space-between;gap:.5rem;align-items:center;margin-bottom:.7rem}
+.cat{font-family:var(--head);font-weight:700;font-size:.8rem;color:var(--violet)}
+.lvl{font-family:var(--head);font-weight:700;font-size:.72rem;border-radius:999px;padding:.15rem .6rem;background:var(--yellow);color:var(--yellow-ink)}
+.lvl.mid{background:var(--mint);color:#04261b}
+.quest h3{font-size:1.2rem}
+.quest h3 a{color:var(--ink);text-decoration:none}
+.quest h3 a:hover{color:var(--violet);text-decoration:underline}
+.quest p{margin:.1rem 0 .8rem;font-size:1rem}
+.quest .foot{margin-top:auto;display:flex;justify-content:space-between;font-family:var(--head);font-size:.82rem;color:var(--muted)}
+.quest .foot a{font-weight:700}
+#count{color:var(--muted);font-family:var(--head);font-size:.88rem;margin:.2rem 0 1rem}
+
+/* About + disclaimer */
+.two{display:grid;grid-template-columns:1fr 1.4fr;gap:2.2rem;align-items:start;margin-top:2.6rem}
+.two h2{font-size:1.5rem}
+.disclaimer{background:var(--card);border:2px solid var(--ink);border-radius:16px;padding:1.5rem 1.7rem;box-shadow:6px 6px 0 var(--yellow)}
+.disclaimer h3{font-size:1rem;margin:1rem 0 .15rem}
+.disclaimer h3:first-child{margin-top:0}
+.disclaimer p{margin:.1rem 0 .5rem;font-size:1rem}
+
+/* Footer */
+footer{background:var(--ink);color:var(--bg);margin-top:3rem;padding:2.2rem 0 2.5rem;font-size:1rem}
+:root[data-theme="dark"] footer,:root:not([data-theme="light"]) footer{background:#07071a;color:#f0f0ff}
+footer a{color:inherit}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1.6rem}
+footer h3{font-size:1rem}
+footer ul{list-style:none;margin:0;padding:0}
+footer li{margin:.3rem 0}
+.copy{margin-top:1.5rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.2);font-size:.9rem;opacity:.8}
+
+/* Consent */
+#consent{position:fixed;left:1rem;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));max-width:620px;margin:0 auto;background:var(--card);color:var(--ink);border:2px solid var(--ink);border-radius:14px;padding:1rem 1.2rem;box-shadow:5px 5px 0 var(--yellow);display:none;z-index:30;font-size:.98rem;line-height:1.5}
+#consent.show{display:block}
+#consent button{margin-top:.7rem;cursor:pointer;font-size:.92rem}
+
+@media (max-width:900px){
+  .hero,.two,.fgrid{grid-template-columns:1fr}
+  .board{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){.board{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){
+  .quest{transition:transform .15s}
+  .quest:hover{transform:translate(-2px,-2px)}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="novaquest.html" aria-label="Novaquest home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="10" fill="#5b3df5"/><path d="M20 7l3.500 9.500L33 20l-9.500 3.500L20 33l-3.500-9.500L7 20l9.500-3.500z" fill="#ffd23f"/></svg>
+      Novaquest
+    </a>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="novaquest.html">Home</a></li>
+        <li><a href="#quests">Quests</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#disclaimer">Disclaimer</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <h1>Learn something new. <mark>Level up</mark> today.</h1>
+      <p>Novaquest turns tech tips, brain games, science and creative skills into short, friendly guides. Pick a quest that matches your level and try it in one sitting.</p>
+      <a class="btn" href="#quests">Choose a quest</a>
+    </div>
+    <aside class="log" aria-label="Starter quest log">
+      <h2>Your starter quest log</h2>
+      <ul>
+        <li><span class="box done" aria-hidden="true"></span>Visit Novaquest and pick a topic</li>
+        <li><span class="box" aria-hidden="true"></span>Read one beginner guide</li>
+        <li><span class="box" aria-hidden="true"></span>Try one tip from it today</li>
+      </ul>
+      <div class="bar" role="img" aria-label="One of three starter steps completed"><i></i></div>
+      <small>1 of 3 steps completed</small>
+    </aside>
+  </section>
+
+  <!-- Ad slot 1 -->
+  <div class="ad-slot" aria-label="Advertisement">
+    <small>Advertisement</small>
+    <div class="ad-box">Ad space</div>
+  </div>
+
+  <div class="filters" id="quests" role="group" aria-label="Filter quests by topic">
+    <h2>Quest board</h2>
+    <button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
+    <button class="chip" type="button" data-f="Tech tips" aria-pressed="false">Tech tips</button>
+    <button class="chip" type="button" data-f="Brain games" aria-pressed="false">Brain games</button>
+    <button class="chip" type="button" data-f="Science" aria-pressed="false">Science</button>
+    <button class="chip" type="button" data-f="Creative" aria-pressed="false">Creative</button>
+  </div>
+  <p id="count" aria-live="polite"></p>
+
+  <div class="board">
+    <article class="quest" data-cat="Tech tips">
+      <div class="top-row"><span class="cat">Tech tips</span><span class="lvl">Beginner</span></div>
+      <h3><a href="#">Ten keyboard shortcuts that save hours every month</a></h3>
+      <p>Copy, search, switch windows and more. Learn the shortcuts that matter most and practise them in five minutes a day.</p>
+      <div class="foot"><span>6 min read</span><a href="#">Start quest</a></div>
+    </article>
+    <article class="quest" data-cat="Brain games">
+      <div class="top-row"><span class="cat">Brain games</span><span class="lvl">Beginner</span></div>
+      <h3><a href="#">How to solve your first sudoku: a clear step-by-step method</a></h3>
+      <p>Scan, mark candidates and use simple logic rules instead of guessing. A calm approach that works on easy and medium grids.</p>
+      <div class="foot"><span>8 min read</span><a href="#">Start quest</a></div>
+    </article>
+    <article class="quest" data-cat="Science">
+      <div class="top-row"><span class="cat">Science</span><span class="lvl">Beginner</span></div>
+      <h3><a href="#">Why do we dream? What scientists know and still debate</a></h3>
+      <p>A plain-language look at sleep stages and the main theories, with a reminder of how much is still unknown.</p>
+      <div class="foot"><span>7 min read</span><a href="#">Start quest</a></div>
+    </article>
+
+    <article class="quest" data-cat="Creative">
+      <div class="top-row"><span class="cat">Creative</span><span class="lvl">Beginner</span></div>
+      <h3><a href="#">Start a sketchbook habit with just ten minutes a day</a></h3>
+      <p>No talent needed. Simple prompts, basic supplies and a gentle routine to help you draw regularly.</p>
+      <div class="foot"><span>6 min read</span><a href="#">Start quest</a></div>
+    </article>
+    <article class="quest" data-cat="Tech tips">
+      <div class="top-row"><span class="cat">Tech tips</span><span class="lvl mid">Intermediate</span></div>
+      <h3><a href="#">Back up your photos the safe way: the 3-2-1 rule</a></h3>
+      <p>Keep three copies, on two kinds of storage, with one stored away from home. Here is how to set it up for free or low cost.</p>
+      <div class="foot"><span>9 min read</span><a href="#">Start quest</a></div>
+    </article>
+    <article class="quest" data-cat="Brain games">
+      <div class="top-row"><span class="cat">Brain games</span><span class="lvl mid">Intermediate</span></div>
+      <h3><a href="#">Chess openings for beginners: three ideas to remember</a></h3>
+      <p>Control the centre, develop your pieces and keep your king safe. Learn the principles before memorising any moves.</p>
+      <div class="foot"><span>8 min read</span><a href="#">Start quest</a></div>
+    </article>
+  </div>
+
+  <!-- Ad slot 2 -->
+  <div class="ad-slot" aria-label="Advertisement">
+    <small>Advertisement</small>
+    <div class="ad-box">Ad space</div>
+  </div>
+
+  <div class="board">
+    <article class="quest" data-cat="Science">
+      <div class="top-row"><span class="cat">Science</span><span class="lvl mid">Intermediate</span></div>
+      <h3><a href="#">How vaccines teach the body: a simple explanation</a></h3>
+      <p>The basic idea of immune memory in clear language. For personal medical questions, always speak to a doctor.</p>
+      <div class="foot"><span>8 min read</span><a href="#">Start quest</a></div>
+    </article>
+    <article class="quest" data-cat="Creative">
+      <div class="top-row"><span class="cat">Creative</span><span class="lvl mid">Intermediate</span></div>
+      <h3><a href="#">Edit better phone photos with five free adjustments</a></h3>
+      <p>Crop, straighten, brightness, contrast and warmth. Small changes that make a big difference.</p>
+      <div class="foot"><span>7 min read</span><a href="#">Start quest</a></div>
+    </article>
+    <article class="quest" data-cat="Science">
+      <div class="top-row"><span class="cat">Science</span><span class="lvl">Beginner</span></div>
+      <h3><a href="#">Why is the ocean salty? A short tour of the water cycle</a></h3>
+      <p>Rivers carry minerals to the sea, and evaporation leaves them behind. See how it all connects.</p>
+      <div class="foot"><span>5 min read</span><a href="#">Start quest</a></div>
+    </article>
+  </div>
+
+  <div class="two">
+    <section id="about">
+      <h2>About Novaquest</h2>
+      <p>Novaquest is an independent blog that makes learning feel like progress. Our team writes every guide from scratch, checks facts against reliable sources and updates posts when information changes.</p>
+      <p>We keep Novaquest free by showing advertising. Ads never decide what we publish. Contact us at <a href="mailto:contact@yourdomain.com">contact@yourdomain.com</a>.</p>
+    </section>
+    <section id="disclaimer">
+      <h2>Disclaimer</h2>
+      <div class="disclaimer" role="note">
+        <h3>General information only</h3>
+        <p>Content on Novaquest is provided for general information and education. We aim to keep it accurate and current, but we cannot guarantee it is complete, error-free or right for your situation.</p>
+        <h3>Not professional advice</h3>
+        <p>Our articles are not medical, legal, financial or other professional advice. Please consult a qualified professional about personal questions, and balance screen time and games with rest and other activities.</p>
+        <h3>Trademarks</h3>
+        <p>Game, product and brand names mentioned belong to their owners. Novaquest is not affiliated with or endorsed by them.</p>
+        <h3>Advertising and cookies</h3>
+        <p>Novaquest shows ads served by Google AdSense and possibly other partners, who may use cookies to personalise ads based on your visits to this and other sites. See our <a href="privacy.html">Privacy Policy</a> for details. Ads are not endorsements.</p>
+        <h3>External links and changes</h3>
+        <p>We may link to third-party sites and are not responsible for their content. We may update this disclaimer at any time, and using this site means you accept our <a href="terms.html">Terms and Conditions</a>.</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <h3>Novaquest</h3>
+        <p>Friendly guides on tech tips, brain games, science and creative skills.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <ul><li><a href="novaquest.html">Home</a></li><li><a href="#quests">Quests</a></li><li><a href="#about">About</a></li></ul>
+      </div>
+      <div>
+        <h3>Legal</h3>
+        <ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms and Conditions</a></li><li><a href="#disclaimer">Disclaimer</a></li></ul>
+      </div>
+    </div>
+    <div class="copy">© <span id="yr">2026</span> Novaquest. All rights reserved. Contact: <a href="mailto:contact@yourdomain.com">contact@yourdomain.com</a></div>
+  </div>
+</footer>
+
+<div id="consent" role="dialog" aria-live="polite" aria-label="Cookie notice">
+  We use cookies to run this site and to show ads. By continuing, you agree to our <a href="privacy.html">Privacy Policy</a>.
+  <br><button class="btn" id="consent-ok" type="button">Got it</button>
+</div>
+
+<script>
+(function(){
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Topic filter (all quests stay visible if JavaScript is off)
+  var chips = document.querySelectorAll('.chip'),
+      cards = document.querySelectorAll('.quest'),
+      count = document.getElementById('count');
+  function apply(f){
+    var n = 0;
+    cards.forEach(function(c){
+      var show = f === 'all' || c.getAttribute('data-cat') === f;
+      c.hidden = !show; if(show) n++;
+    });
+    chips.forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-f') === f ? 'true' : 'false'); });
+    count.textContent = 'Showing ' + n + ' ' + (n === 1 ? 'quest' : 'quests') + (f === 'all' ? '' : ' in ' + f);
+  }
+  chips.forEach(function(b){ b.addEventListener('click', function(){ apply(b.getAttribute('data-f')); }); });
+  apply('all');
+
+  // Cookie notice
+  var box = document.getElementById('consent'), ok = false;
+  try { ok = localStorage.getItem('novaquest-consent') === '1'; } catch(e) {}
+  if(!ok) box.classList.add('show');
+  document.getElementById('consent-ok').addEventListener('click', function(){
+    box.classList.remove('show');
+    try { localStorage.setItem('novaquest-consent','1'); } catch(e) {}
+  });
+})();
+</script>
+</body>
+</html>
